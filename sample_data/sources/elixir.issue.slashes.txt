@@ -1,0 +1,20 @@
+# **Function with a slash ( "Kernel./" )**: this one takes `/:` as the beggining of a regular expression
+#
+# Beginning of conflict
+
+import Kernel, except: [spawn: 1, +: 2, /: 2, Unless: 2]
+
+# End of conflict
+
+# Beginning of conflict
+# Slash misinterpreted in Regex
+# original report: https://github.com/elixir-lang/elixir/issues/3670
+
+Regex.split(~r/-/, "a-b-c")
+Regex.split(~r/-/, "a-b-c", [parts: 2])
+Regex.split(~r/-/, "abc")
+Regex.split(~r//, "abc")
+Regex.split(~r/a(?<second>b)c/, "abc")
+Regex.split(~r/a(?<second>b)c/, "abc", on: [:second])
+
+# End of conflict

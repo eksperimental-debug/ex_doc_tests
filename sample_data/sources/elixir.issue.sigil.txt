@@ -1,0 +1,24 @@
+# **Sigils** : It cannot deal with the [`~S sigil`](http://elixir-lang.org/getting-started/sigils.html#interpolation-and-escaping-in-sigils).
+# `~s` is fine though.
+#
+# Beginning of conflict
+
+defmodule Long.Module.Name do
+  @doc ~S'''
+  No #{interpolation} of any kind.
+  \000 \x{ff}
+
+  \n #{\x{ff}}
+  '''
+  def func(a, b \\ []), do: :ok
+
+  @doc ~S"""
+  No #{interpolation} of any kind.
+  \000 \x{ff}
+
+  \n #{\x{ff}}
+  """
+  def func(a, b \\ []), do: :ok
+end
+
+# End of conflict

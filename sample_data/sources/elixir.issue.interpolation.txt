@@ -1,0 +1,12 @@
+# **Interpolation**: It cannot deal properly with interpolation.
+# Every single line bellow, has an issues, it takes it as a comment whatever comes after the #
+#
+# Beginning of conflict
+
+~R'this + i\s "a" regex too'
+~w(hello #{ ["has" <> "123", '\c\d', "\123 interpol" | []] } world)s
+~W(hello #{no "123" \c\d \123 interpol} world)s
+~s{Escapes terminators \{ and \}, but no {balancing} # outside of sigil here }
+~S"No escapes \s\t\n and no #{interpolation}"
+
+# End of conflict
